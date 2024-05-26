@@ -1,0 +1,13 @@
+.sidebar-container{
+    width: 10%;
+    height: 35.7rem;
+    background: rgb(49, 48, 48);
+    color: white;
+    padding: 5px;
+}
+
+.sidebar-elements{
+    margin: 5px 5px;
+    text-align: center;
+    list-style: none;
+}

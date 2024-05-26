@@ -1,0 +1,37 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar{
+    width: 100%;
+    height: 4rem;
+    color: white;
+    background-color: rgb(73, 26, 167);
+}
+
+.navbar > ul{
+    list-style-type: none;
+}
+
+.navbar-list{
+    display: flex;
+    justify-content: end;
+    padding: 5px;
+}
+
+.navbar-list>li{
+    /* background: rgb(238, 233, 233); */
+    margin: 10px;
+    /* cursor: pointer; */
+    
+}
+
+.navbar-list>li>a{
+    text-decoration: none;
+    color: white;
+}
+
+.logoutBtn{
+    color: white;
+}

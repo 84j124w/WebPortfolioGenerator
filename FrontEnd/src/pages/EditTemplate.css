@@ -1,0 +1,44 @@
+.editor-container {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.toolbar button {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.toolbar button:hover {
+    background-color: #ddd;
+}
+
+.editor {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 300px;
+    overflow-y: auto;
+}
+
+.html-preview {
+    margin-top: 20px;
+}
+
+
+.btn-editro-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
