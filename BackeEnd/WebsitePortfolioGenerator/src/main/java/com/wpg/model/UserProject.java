@@ -1,5 +1,6 @@
 package com.wpg.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -20,16 +21,16 @@ public class UserProject {
 	private String description;
 	private String technologies;
 	@Column(name="working_started_date")
-	private Date workingStartedDate;
+	private LocalDate workingStartedDate;
 	@Column(name="working_ended_date")
-	private Date workingEndedDate;
+	private LocalDate workingEndedDate;
 	@Column(name="created_at")
 	private Date createdAt;
 	public UserProject() {
 		super();
 	}
 	public UserProject(long id, long userId, String title, String description, String technologies,
-			Date workingStartedDate, Date workingEndedDate, Date createdAt) {
+					   LocalDate workingStartedDate, LocalDate workingEndedDate, Date createdAt) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -70,16 +71,16 @@ public class UserProject {
 	public void setTechnologies(String technologies) {
 		this.technologies = technologies;
 	}
-	public Date getWorkingStartedDate() {
+	public LocalDate getWorkingStartedDate() {
 		return workingStartedDate;
 	}
-	public void setWorkingStartedDate(Date workingStartedDate) {
+	public void setWorkingStartedDate(LocalDate workingStartedDate) {
 		this.workingStartedDate = workingStartedDate;
 	}
-	public Date getWorkingEndedDate() {
+	public LocalDate getWorkingEndedDate() {
 		return workingEndedDate;
 	}
-	public void setWorkingEndedDate(Date workingEndedDate) {
+	public void setWorkingEndedDate(LocalDate workingEndedDate) {
 		this.workingEndedDate = workingEndedDate;
 	}
 	public Date getCreatedAt() {

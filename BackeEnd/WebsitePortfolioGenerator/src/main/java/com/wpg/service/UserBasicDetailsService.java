@@ -9,4 +9,6 @@ public interface UserBasicDetailsService {
 	List<UserBasicDetails> getAllUserBasicDetails();
 	UserBasicDetails updateUserBasicDetails(UserBasicDetails userBasicDetails);
 	boolean deleteUserBasicDetailsById(long id);
+	UserBasicDetails findByEmail(String email);
+
 }

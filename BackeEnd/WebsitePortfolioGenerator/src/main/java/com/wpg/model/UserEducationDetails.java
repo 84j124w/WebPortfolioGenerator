@@ -1,5 +1,6 @@
 package com.wpg.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -19,20 +20,20 @@ public class UserEducationDetails {
 	private long userId;
 	private String course;
 	private String university;
-	@Column(name="course_started_date")
-	private Date courseStartedDate;
-	@Column(name="course_ended_date")
-	private Date courseEndedDate;
+	@Column(name="course_started_date", columnDefinition = "date")
+	private LocalDate courseStartedDate;
+	@Column(name="course_ended_date", columnDefinition = "date")
+	private LocalDate courseEndedDate;
 	@Column(name="is_present")
 	private int isPresent;
 	@Column(name="created_at")
 	private Date createdAt;
-	
+
 	public UserEducationDetails() {
 		super();
 	}
-	public UserEducationDetails(long id, long userId, String course, String university, Date courseStartedDate,
-			Date courseEndedDate, int isPresent, Date createdAt) {
+	public UserEducationDetails(long id, long userId, String course, String university, LocalDate courseStartedDate,
+			LocalDate courseEndedDate, int isPresent, Date createdAt) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -67,16 +68,16 @@ public class UserEducationDetails {
 	public void setUniversity(String university) {
 		this.university = university;
 	}
-	public Date getCourseStartedDate() {
+	public LocalDate getCourseStartedDate() {
 		return courseStartedDate;
 	}
-	public void setCourseStartedDate(Date courseStartedDate) {
+	public void setCourseStartedDate(LocalDate courseStartedDate) {
 		this.courseStartedDate = courseStartedDate;
 	}
-	public Date getCourseEndedDate() {
+	public LocalDate getCourseEndedDate() {
 		return courseEndedDate;
 	}
-	public void setCourseEndedDate(Date courseEndedDate) {
+	public void setCourseEndedDate(LocalDate courseEndedDate) {
 		this.courseEndedDate = courseEndedDate;
 	}
 	public int getIsPresent() {

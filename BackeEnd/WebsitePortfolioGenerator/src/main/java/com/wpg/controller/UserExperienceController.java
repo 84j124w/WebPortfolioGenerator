@@ -2,6 +2,8 @@ package com.wpg.controller;
 
 import java.util.List;
 
+import com.wpg.payload.UserExperienceDto;
+import com.wpg.utils.UserExperienceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +23,17 @@ public class UserExperienceController {
 	UserExperienceService experienceService;
 	
 	@GetMapping
-	public List<UserExperience> getAll(){
-		return experienceService.getAllUserExperience();
+	public List<UserExperienceDto> getAll(){
+		List<UserExperience> userExperiences = experienceService.getAllUserExperience();
+		List<UserExperienceDto> userExperienceDtos =  UserExperienceMapper.userExperienceToUserExperienceDto(userExperiences);
+		return userExperienceDtos;
 	}
 	
 	@PostMapping
-	public UserExperience saveUserExperience(@RequestBody UserExperience experience) {
-		return experienceService.saveUserExperience(experience);
+	public List<UserExperienceDto> saveUserExperience(@RequestBody List<UserExperienceDto> userExperienceDtos) {
+		List<UserExperience> userExperiences  = UserExperienceMapper.userExperienceDtoToUserExperience(userExperienceDtos);
+		List<UserExperience> experiences =experienceService.saveUserExperiences(userExperiences);
+		List<UserExperienceDto> experienceDtos = UserExperienceMapper.userExperienceToUserExperienceDto(experiences);
+		return experienceDtos;
 	}
 }

@@ -2,6 +2,8 @@ package com.wpg.controller;
 
 import java.util.List;
 
+import com.wpg.payload.UserProjectDto;
+import com.wpg.utils.UserProjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,10 @@ public class UserProjectController {
 	}
 	
 	@PostMapping
-	public UserProject saveUserProject(@RequestBody UserProject userProject) {
-		return projectService.saveUserProject(userProject);
+	public List<UserProjectDto> saveUserProject(@RequestBody List<UserProjectDto> userProjectDto) {
+		List<UserProject> userProjectList = UserProjectMapper.userProjectDtoToUserProject(userProjectDto);
+		List<UserProject> userProjectList2 = projectService.saveUserProject(userProjectList);
+        return UserProjectMapper.userProjectToUserProjectDtos(userProjectList2);
 	}
 
 }

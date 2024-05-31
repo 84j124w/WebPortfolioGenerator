@@ -28,25 +28,25 @@ public class UserEducationDetailsServiceImpl implements UserEducationDetailsServ
 	}
 
 	@Override
-	public UserEducationDetails saveUserEducationDetails(UserEducationDetails educationDetails) {
-		UserEducationDetails educationDetails2 = null;
+	public List<UserEducationDetails> saveUserEducationDetails(List<UserEducationDetails> educationDetailsList) {
+		List<UserEducationDetails> educationDetailsList2 = new ArrayList<>();
 		try {
-			educationDetails2 = educationDetailsRepo.save(educationDetails);
+			educationDetailsList2 = educationDetailsRepo.saveAll(educationDetailsList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return educationDetails2;
+		return educationDetailsList2;
 	}
 
 	@Override
-	public UserEducationDetails updateUserEducationDetails(UserEducationDetails educationDetails) {
-		UserEducationDetails educationDetails2 = null;
+	public List<UserEducationDetails> updateUserEducationDetails(List<UserEducationDetails> educationDetailsList) {
+		List<UserEducationDetails> educationDetailsList2 = new ArrayList<>();
 		try {
-			educationDetails2 = educationDetailsRepo.save(educationDetails);
+			educationDetailsList2 = educationDetailsRepo.saveAll(educationDetailsList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return educationDetails2;
+		return educationDetailsList2;
 	}
 
 	@Override

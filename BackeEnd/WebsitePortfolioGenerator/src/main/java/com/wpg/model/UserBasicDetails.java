@@ -19,7 +19,7 @@ public class UserBasicDetails {
 	private String email;
 	private String mobile;
 	@Column(name="soft_skills")
-	private String softSkils;
+	private String softSkills;
 	@Column(name="technical_skills")
 	private String technicalSkills;
 	private String address;
@@ -31,14 +31,14 @@ public class UserBasicDetails {
 	public UserBasicDetails() {
 		super();
 	}
-	public UserBasicDetails(long id, String name, String email, String mobile, String softSkils, String technicalSkills,
+	public UserBasicDetails(long id, String name, String email, String mobile, String softSkills, String technicalSkills,
 			String address, String tagline, String summary, Date createdAt) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.mobile = mobile;
-		this.softSkils = softSkils;
+		this.softSkills = softSkills;
 		this.technicalSkills = technicalSkills;
 		this.address = address;
 		this.tagline = tagline;
@@ -69,12 +69,15 @@ public class UserBasicDetails {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public String getSoftSkils() {
-		return softSkils;
+
+	public String getSoftSkills() {
+		return softSkills;
 	}
-	public void setSoftSkils(String softSkils) {
-		this.softSkils = softSkils;
+
+	public void setSoftSkills(String softSkills) {
+		this.softSkills = softSkills;
 	}
+
 	public String getTechnicalSkills() {
 		return technicalSkills;
 	}
@@ -105,5 +108,10 @@ public class UserBasicDetails {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	
+
+	@Override
+	public String toString() {
+		String userDetails = this.name+", "+this.email+", "+this.mobile;
+		return userDetails.toString();
+	}
 }

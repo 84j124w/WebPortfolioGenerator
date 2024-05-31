@@ -1,24 +1,24 @@
 package com.wpg.controller;
 
 import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 
+import com.wpg.model.UserBasicDetails;
+import com.wpg.payload.JWTAuthResponse;
+import com.wpg.jwt.JWTTokenHelper;
+import com.wpg.payload.JWTAuthRequest;
+import com.wpg.payload.UserDto;
+import com.wpg.service.UserBasicDetailsService;
+import com.wpg.utils.UserBasicDetailsMapperHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.wpg.model.User;
 import com.wpg.repo.UserRepo;
@@ -27,9 +27,6 @@ import com.wpg.repo.UserRepo;
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
-//	@Autowired
-//    private AuthenticationManager authenticationManager;
-
     @Autowired
     private UserRepo userRepo;
 
@@ -38,24 +35,46 @@ public class AuthController {
     
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JWTTokenHelper jwtTokenHelper;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private UserBasicDetailsService userBasicDetailsService;
     
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> loginRequest) {
-        String email = loginRequest.get("email");
-        String password = loginRequest.get("password");
+    public ResponseEntity<JWTAuthResponse> loginUser(@RequestBody JWTAuthRequest request) throws Exception {
+        String username = request.getUsername();
+        String password = request.getPassword();
 
+        this.authenticate(username, password);
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+        String token = jwtTokenHelper.generateToken(userDetails);
+
+        UserBasicDetails basicDetails = userBasicDetailsService.findByEmail(userDetails.getUsername());
+        UserDto userDto = UserBasicDetailsMapperHelper.userBasicDetailsToUserDto(basicDetails);
+
+
+        JWTAuthResponse authResponse = new JWTAuthResponse();
+        authResponse.setToken(token);
+        authResponse.setUserDto(userDto);
+
+        return new ResponseEntity<JWTAuthResponse>(authResponse, HttpStatus.OK);
+
+    }
+
+    public void authenticate(String username, String password) throws Exception {
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         try {
-            Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(email, password)
-            );
-            if (authentication.isAuthenticated()) {
-                return ResponseEntity.ok("User logged in successfully!");
-            } else {
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
-            }
-        } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login credentials");
+            this.authenticationManager.authenticate(authenticationToken);
+        }catch (BadCredentialsException ex){
+            System.out.println("Invalid Username or Password");
+            throw new Exception("Invalid Username or Password");
         }
+
     }
 
     @PostMapping("/register")
@@ -71,7 +90,7 @@ public class AuthController {
         User newUser = new User();
         newUser.setUsername(email);
         newUser.setPassword(passwordEncoder.encode(password));
-//        newUser.setRoles(Set.of("ROLE_USER"));
+        newUser.setRoles(("ROLE_USER"));
 
         userRepo.save(newUser);
         return ResponseEntity.ok("User registered successfully!");

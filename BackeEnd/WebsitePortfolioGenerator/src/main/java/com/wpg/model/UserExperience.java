@@ -1,5 +1,6 @@
 package com.wpg.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -19,9 +20,9 @@ public class UserExperience {
 	@Column(name="company_name")
 	private String companyName;
 	@Column(name="working_started_date")
-	private Date workingStartedDate;
+	private LocalDate workingStartedDate;
 	@Column(name="working_ended_date")
-	private Date workingEndedDate;
+	private LocalDate workingEndedDate;
 	@Column(name="total_experience")
 	private double totalExperience;
 	@Column(name="is_currently_working")
@@ -32,7 +33,7 @@ public class UserExperience {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserExperience(long id, long userId, String companyName, Date workingStartedDate, Date workingEndedDate,
+	public UserExperience(long id, long userId, String companyName, LocalDate workingStartedDate, LocalDate workingEndedDate,
 			double totalExperience, int isCurrentlyWorking, Date createdAt) {
 		super();
 		this.id = id;
@@ -62,16 +63,16 @@ public class UserExperience {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-	public Date getWorkingStartedDate() {
+	public LocalDate getWorkingStartedDate() {
 		return workingStartedDate;
 	}
-	public void setWorkingStartedDate(Date workingStartedDate) {
+	public void setWorkingStartedDate(LocalDate workingStartedDate) {
 		this.workingStartedDate = workingStartedDate;
 	}
-	public Date getWorkingEndedDate() {
+	public LocalDate getWorkingEndedDate() {
 		return workingEndedDate;
 	}
-	public void setWorkingEndedDate(Date workingEndedDate) {
+	public void setWorkingEndedDate(LocalDate workingEndedDate) {
 		this.workingEndedDate = workingEndedDate;
 	}
 	public double getTotalExperience() {

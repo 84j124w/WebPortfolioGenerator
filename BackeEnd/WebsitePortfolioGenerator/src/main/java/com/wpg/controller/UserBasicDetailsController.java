@@ -2,6 +2,8 @@ package com.wpg.controller;
 
 import java.util.List;
 
+import com.wpg.payload.UserBasicDetailsDto;
+import com.wpg.utils.UserBasicDetailsMapperHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +28,9 @@ public class UserBasicDetailsController {
 	}
 	
 	@PostMapping
-	public UserBasicDetails saveUserBasicDetails(@RequestBody UserBasicDetails basicDetails) {
-		return basicDetailsService.saveUserBasicDetails(basicDetails);
+	public UserBasicDetails saveUserBasicDetails(@RequestBody UserBasicDetailsDto basicDetailsDto) {
+		UserBasicDetails userBasicDetails = UserBasicDetailsMapperHelper.userBasicDetailsDtoToUserBasicDetails(basicDetailsDto);
+		return basicDetailsService.saveUserBasicDetails(userBasicDetails);
 	}
 
 }

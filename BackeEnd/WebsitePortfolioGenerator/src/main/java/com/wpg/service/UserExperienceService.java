@@ -6,5 +6,5 @@ import com.wpg.model.UserExperience;
 
 public interface UserExperienceService {
 	List<UserExperience> getAllUserExperience();
-	UserExperience saveUserExperience(UserExperience experience);
+	List<UserExperience> saveUserExperiences(List<UserExperience> experiences);
 }

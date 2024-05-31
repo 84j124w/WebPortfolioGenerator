@@ -28,14 +28,14 @@ public class UserProjectServiceImpl implements UserProjectService {
 	}
 
 	@Override
-	public UserProject saveUserProject(UserProject userProject) {
-		UserProject userProject2 = null;
+	public List<UserProject> saveUserProject(List<UserProject> userProjects) {
+		List<UserProject> userProjects2 = new ArrayList<>();
 		try {
-			userProject2 = projectRepo.save(userProject);
+			userProjects2 = projectRepo.saveAll(userProjects);
 		} catch (Exception e) {
 
 		}
-		return userProject2;
+		return userProjects2;
 	}
 
 }

@@ -2,6 +2,8 @@ package com.wpg.controller;
 
 import java.util.List;
 
+import com.wpg.payload.UserEducationDto;
+import com.wpg.utils.UserEducationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +21,21 @@ import com.wpg.service.UserEducationDetailsService;
 public class UserEducationDetailsController {
 	@Autowired
 	UserEducationDetailsService educationDetailsService;
-	
+
 	@GetMapping
-	public List<UserEducationDetails> getAllUserEducationDetails(){
-		return educationDetailsService.getAllUserEducationDetails();
+	public List<UserEducationDto> getAllUserEducationDetails() {
+		List<UserEducationDetails> educationDetails = educationDetailsService.getAllUserEducationDetails();
+		for(UserEducationDetails educationDetails1: educationDetails){
+			System.out.println(educationDetails1.getCourseEndedDate()+" "+educationDetails1.getCourseStartedDate());
+		}
+
+		return UserEducationMapper.userEducationToUserEducationDto(educationDetails);
 	}
-	
+
 	@PostMapping
-	public UserEducationDetails saveUserEducationDetails(@RequestBody UserEducationDetails educationDetails) {
-		return educationDetailsService.saveUserEducationDetails(educationDetails);
+	public List<UserEducationDto> saveUserEducationDetails(@RequestBody List<UserEducationDto> educationDtos) {
+		List<UserEducationDetails> educationDetails = UserEducationMapper.userEducationDtoToUserEducation(educationDtos);
+		List<UserEducationDetails> savedDetails = educationDetailsService.saveUserEducationDetails(educationDetails);
+		return UserEducationMapper.userEducationToUserEducationDto(savedDetails);
 	}
 }

@@ -27,14 +27,14 @@ public class UserExperienceServiceImpl implements UserExperienceService{
 	}
 
 	@Override
-	public UserExperience saveUserExperience(UserExperience experience) {
-		UserExperience experience2 = null;
+	public List<UserExperience> saveUserExperiences(List<UserExperience> experiences) {
+		List<UserExperience> userExperiences = new ArrayList<>();
 		try {
-			experience2 = experienceRepo.save(experience);
+			userExperiences = experienceRepo.saveAll(experiences);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return experience2;
+		return userExperiences;
 	}
 
 }

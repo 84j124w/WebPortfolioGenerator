@@ -6,7 +6,7 @@ import com.wpg.model.UserEducationDetails;
 
 public interface UserEducationDetailsService {
 	List<UserEducationDetails> getAllUserEducationDetails();
-	UserEducationDetails saveUserEducationDetails(UserEducationDetails educationDetails);
-	UserEducationDetails updateUserEducationDetails(UserEducationDetails educationDetails);
+	List<UserEducationDetails> saveUserEducationDetails(List<UserEducationDetails> educationDetailsList);
+	List<UserEducationDetails> updateUserEducationDetails(List<UserEducationDetails> educationDetailsList);
 	boolean deleteUserEducationDetailsById(long id);
 }

@@ -64,4 +64,16 @@ public class UserBasicDetailsServiceImpl implements UserBasicDetailsService{
 		return result;
 	}
 
+	@Override
+	public UserBasicDetails findByEmail(String email) {
+		UserBasicDetails details = null;
+		try {
+			details = userBasicDetailsRepo.findByEmail(email);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		return details;
+	}
+
 }

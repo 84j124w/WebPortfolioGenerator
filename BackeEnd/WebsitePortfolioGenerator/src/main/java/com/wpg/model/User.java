@@ -21,20 +21,20 @@ public class User {
     private long id;
     private String username;
     private String password;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> roles = new HashSet<>();
+    private String roles;
+    @Column(name="user_basic_details_id")
+    private long userBasicDetailId;
 
     public User() {
         super();
     }
 
-    public User(long id, String username, String password, Set<String> roles) {
-        super();
+    public User(long id, String username, String password, String roles, long userBasicDetailId) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.roles = roles;
+        this.userBasicDetailId = userBasicDetailId;
     }
 
     public long getId() {
@@ -61,12 +61,20 @@ public class User {
         this.password = password;
     }
 
-    public Set<String> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<String> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public long getUserBasicDetailId() {
+        return userBasicDetailId;
+    }
+
+    public void setUserBasicDetailId(long userBasicDetailId) {
+        this.userBasicDetailId = userBasicDetailId;
     }
 }
 
